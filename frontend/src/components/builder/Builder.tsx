@@ -116,7 +116,7 @@ export default function Builder({ formId }: { formId: number }) {
         title: qToCopy.title + " (Copy)",
         description: qToCopy.description,
         required: qToCopy.required,
-        options: qToCopy.options.map(o => ({ label: o.label, position: o.position }))
+        options: qToCopy.options.map(o => ({ label: o.label, position: o.position } as any))
       });
       const updatedQuestions = [...form.questions, q];
       setForm({ ...form, questions: updatedQuestions });
