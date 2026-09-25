@@ -7,3 +7,6 @@ python-jose
 passlib
 bcrypt
 pydantic
+httpx
+google-auth
+requests
