@@ -15,7 +15,9 @@ if SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
 else:
     # Ensure psycopg2 is used for neon
     if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
-        SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
+        SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql+psycopg2://", 1)
+    elif SQLALCHEMY_DATABASE_URL.startswith("postgresql://"):
+        SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgresql://", "postgresql+psycopg2://", 1)
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
