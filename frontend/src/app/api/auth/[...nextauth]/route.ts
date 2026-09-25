@@ -15,7 +15,8 @@ export const authOptions: NextAuthOptions = {
       if (account) {
         try {
           // Send the Google id_token to our FastAPI backend
-          const res = await fetch("http://localhost:8000/api/auth/google", {
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+          const res = await fetch(`${apiUrl}/auth/google`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ token: account.id_token }),
